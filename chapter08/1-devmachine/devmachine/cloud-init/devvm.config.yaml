@@ -1,0 +1,35 @@
+#cloud-config
+yum_repos:
+    docker-ce-stable:
+        name: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        enabled: true
+        gpgcheck: true
+        gpgkey: https://download.docker.com/linux/centos/gpg
+    kubernetes:
+        name: Kubernetes
+        baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+        enabled: true
+        gpgcheck: true
+        gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+packages:
+ - git
+ - docker-ce
+ - docker-ce-cli
+ - containerd.io
+ - kubectl
+ - python3
+write_files:
+-   content: |
+      LANG=en_US.utf-8
+      LC_ALL=en_US.utf-8
+    path: /etc/environment
+runcmd:
+ - [ systemctl, enable, docker ]
+ - [ systemctl, start, docker ]
+ - [ usermod, -aG, docker, opc ]
+ - [ mkdir, "/home/opc/.kube" ]
+ - [ chown, "opc:opc", "/home/opc/.kube" ]
+ - [ firewall-offline-cmd, "--add-port=5010-5019/tcp" ]
+ - [ systemctl, restart, firewalld ]
+final_message: "DEV machine is running, after $UPTIME seconds"

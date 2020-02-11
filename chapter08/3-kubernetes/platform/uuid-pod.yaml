@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: uuid-pod
+  namespace: dev-sandbox
+spec:
+  containers:
+  - image: OCIR_REGION.ocir.io/OCI_TENANCY_NAMESPACE/sandbox/uuid:1.0
+    name: uuid-container
+    ports:
+    - containerPort: 5000
+      protocol: TCP
+  imagePullSecrets:
+  - name: sandbox-user-secret

@@ -1,0 +1,5 @@
+#cloud-config
+packages:
+ - stress-ng
+runcmd:
+ -  [ stress-ng, -c, 0, -l, 20 ]
