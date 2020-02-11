@@ -1,6 +1,6 @@
 # Apress Source Code
 
-This repository accompanies [*Practical Oracle Cloud Infrastructure*](https://www.apress.com/9781484255056) by Micha? Jakóbczyk (Apress, 2020).
+This repository accompanies [*Practical Oracle Cloud Infrastructure*](https://www.apress.com/9781484255056) by Michal Jakóbczyk (Apress, 2020).
 
 [comment]: #cover
 ![Cover image](9781484255056.jpg)
